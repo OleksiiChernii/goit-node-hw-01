@@ -1,6 +1,6 @@
 const fs = require("fs").promises;
 const path = require("path");
-const {v4: uuid} = require('uuid');
+const { v4: uuid } = require("uuid");
 
 const contactsPath = path.format({
   dir: "./db",
@@ -29,10 +29,7 @@ async function removeContact(contactId) {
   try {
     const contacts = await listContacts();
     const filteredContacts = contacts.filter(({ id }) => id !== contactId);
-    await fs.writeFile(
-      contactsPath,
-      JSON.stringify(filteredContacts).toString()
-    );
+    await fs.writeFile(contactsPath, JSON.stringify(filteredContacts));
     return listContacts();
   } catch (error) {
     throw error;
@@ -56,8 +53,8 @@ async function addContact(name, email, phone) {
 }
 
 module.exports = {
-    listContacts,
-    getContactById,
-    addContact,
-    removeContact
-}
+  listContacts,
+  getContactById,
+  addContact,
+  removeContact,
+};
